@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+""" This is a module with one class"""
+
+
 class Square:
     """Show the definition and instantiation of a private attribute"""
 
