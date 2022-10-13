@@ -1,3 +1,0 @@
-#!/usr/bin/python3
-class Square:
-    """Show the definition and instantiation of a private attribute"""
