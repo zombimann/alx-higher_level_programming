@@ -1,0 +1,83 @@
+#!/usr/bin/python3
+"""This is the module-wide doc-string"""
+
+
+class Node:
+    """This class defines a node of a singly-linked list"""
+    def __init__(self, data, next_node=None):
+        """Instantiates the attributes
+
+           Args:
+                data (int): The data of the node
+                next_node (Node or None): Points to the next node, or None
+        """
+        self.__data = data
+        self.__next_node = next_node
+
+    @property
+    def data(self):
+        """This is the getter method for the private attribute 'data'"""
+        return self.__data
+
+    @data.setter
+    def data(self, value):
+        """This is the setter method for the private attribute 'data'"""
+        try:
+            if not type(value) is int:
+                raise TypeError("data must be an integer")
+            self.__data = value
+        except TypeError as err:
+            return err
+
+    @property
+    def next_node(self):
+        """This is the getter method for the private attribute 'next_node'"""
+        return self.__next_node
+
+    @next_node.setter
+    def next_node(self, value):
+        """This is the setter method for the private attribute 'next_node'"""
+        try:
+            if not (type(value) is None or type(value) is Node):
+                raise TypeError("next_node must be a Node object")
+            self.__next_node = value
+        except TypeError as err:
+            return err
+
+        
+class SinglyLinkedList:
+    """Defines a singly linked list"""
+    def __init__(self):
+        """A simple instantiation"""
+        self.__head = None
+
+    def sorted_insert(self, value):
+        """Inserts a new Node into the correcr sorted position in the
+           list in increaseing order.
+
+            Args:
+                value (int): The value of the new node.
+        """
+        current = None
+        new = Node(value, None)
+        if not self.__head or self.__head.data >= value:
+            new.next_node = self.__head
+            self.__head = new
+            self.__head = new
+            return self.__head
+        current = self.__head
+        while (current.next_node and current.next_node.data < value):
+            current = current.next_node
+        new.next_node = current.next_node
+        current.next_node = new
+        return self.__head
+
+    def __str__(self):
+        current = self.__head
+        allstr = ""
+        while current:
+            allstr += str(current.data)
+            current = current.next_node
+            if current:
+                allstr += "\n"
+        return allstr

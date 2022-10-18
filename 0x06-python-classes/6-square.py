@@ -33,11 +33,18 @@ class Square:
                 value (int): the new value representing the size
                    of the square.
         """
-        if type(value) != int:
-            raise TypeError("size must be an integer")
-        elif value < 0:
-            raise ValueError("size must be >= 0")
-        self.__size = value
+        try:
+            if type(value) != int:
+                raise TypeError("size must be an integer")
+            elif value < 0:
+                raise ValueError("size must be >= 0")
+            self.__size = value
+        except TypeError as err:
+            pass
+        except ValueError as err:
+            pass
+        finally:
+            return err
 
     @property
     def position(self):
@@ -61,4 +68,4 @@ class Square:
             print()
         else:
             for i in range(self.__size):
-                print(" " * (self.__position[0] - 1) + "#" * self.__size)
+                print(" " * (self.__position[0]) + "#" * self.__size)
